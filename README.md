@@ -1,7 +1,7 @@
 # simula_sei_2026
 
 Gerador de **massa de teste 100% sintética** para o SEI, dirigido pelos volumes e
-distribuições agregadas do **Data Warehouse** (`sei_dw_bd_4_260626`).
+distribuições agregadas do **Data Warehouse** (`sei_dw_bd`).
 
 Produz o banco **`sei_simulado`** (mesma estrutura do `sei`, 511 tabelas) com dados
 inventados que, ao serem reprocessados pelo ETL e pelos painéis Power BI,
@@ -18,8 +18,8 @@ por categoria (tipo de processo, série, unidade, usuário, hipótese legal, sit
 
 ## Requisitos
 
-- Python 3 com `pymysql` (já instalado no ambiente).
-- MariaDB/MySQL local com os bancos `sei_dw_bd_4_260626`, `sei` e `sei_simulado`.
+- Python 3 com `pymysql`.
+- MariaDB/MySQL local com os bancos `sei_dw_bd`, `sei` e `sei_simulado`.
 - Credenciais lidas de `../projeto-simula-sei/acesso_bds.txt` (nada é duplicado aqui).
 - Trava de segurança: o destino **tem** de ser o schema `sei_simulado`.
 
@@ -108,6 +108,6 @@ preparar.py              PREPARAR (importa a estrutura)
   `@example.invalid`; não há CPF/CNPJ válido, senha ou conteúdo de documento/anexo.
 - **Reprodutibilidade**: IDs, datas e escolhas derivam da `seed`.
 
-> Observação: os SQLs de ETL em `sql_refatora_sei_040726/` têm prefixos fixos
+> Observação: os SQLs de ETL em `sql_refatora_sei/` têm prefixos fixos
 > `sei.` (apontam para o schema real). Para reprocessá-los sobre `sei_simulado`,
 > troque `sei.` por `sei_simulado.` (ou rode-os com esse schema como default).
